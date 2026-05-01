@@ -120,7 +120,7 @@ ORDER BY AVG("Emissions CO2") DESC;
 ### Évolution dans le temps
 
 ```sql
-SELECT year, SUM("Emissions CO2")
+SELECT "Année", SUM("Emissions CO2")
 FROM edf_co2
 GROUP BY "Année"
 ORDER BY "Année";
