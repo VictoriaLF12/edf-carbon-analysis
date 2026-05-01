@@ -75,7 +75,7 @@ GROUP BY "Année"
 ORDER BY "Année";
 ```
 #### Preuves d’exécution (PostgreSQL)
-![Top Emitters](visuals/evolution_dans_le_temps.png)
+![Top Emitters](visuals/evolution_des_emissions_mondiales.png)
 
 ---
 
