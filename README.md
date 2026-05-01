@@ -120,20 +120,20 @@ ORDER BY AVG("Emissions CO2") DESC;
 ### Évolution dans le temps
 
 ```sql
-SELECT year, SUM(co2)
+SELECT year, SUM("Emissions CO2")
 FROM edf_co2
-GROUP BY year
-ORDER BY year;
+GROUP BY "Année"
+ORDER BY "Année";
 
 ```
 
 ### Top pays émetteurs
 
 ```sql
-SELECT "Périmètre spatial", SUM(co2)
+SELECT "Périmètre spatial", SUM("Emissions CO2")
 FROM edf_co2
-GROUP BY country
-ORDER BY SUM(co2) DESC
+GROUP BY "Périmètre spatial"
+ORDER BY SUM("Emissions CO2") DESC
 LIMIT 10;
 
 ```
