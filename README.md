@@ -60,7 +60,7 @@ CREATE TABLE edf_co2 (
 
 ---
 
-# Analyses réalisées
+## Analyses réalisées
 
 ### 1. Évolution des émissions mondiales
 Analyse de l’évolution des émissions de CO₂ du périmètre mondial sur la période 2019–2024.
@@ -75,7 +75,7 @@ GROUP BY "Année"
 ORDER BY "Année";
 ```
 #### Preuves d’exécution (PostgreSQL)
-![Top Emitters](visuals/Evolution des emissions mondiales.png)
+![Top Emitters](visuals/emissions_moyennes_par_pays.png)
 
 ---
 
@@ -108,6 +108,8 @@ FROM edf_co2
 WHERE "Périmètre spatial" IN ('France', 'Monde')
 ORDER BY "Année"; 
 ```
+#### Preuves d’exécution (PostgreSQL)
+![Top Emitters](
 
 ### 4. Émissions moyennes par pays
 
@@ -119,6 +121,8 @@ GROUP BY "Périmètre spatial"
 ORDER BY AVG("Emissions CO2") DESC;
 
 ```
+#### Preuves d’exécution (PostgreSQL)
+![Top Emitters](visuals/emissions_moyennes_par_pays.png)
 
 ### 5. Évolution dans le temps
 
@@ -129,6 +133,7 @@ FROM edf_co2
 GROUP BY "Année"
 ORDER BY "Année";
 ```
+#### Preuves d’exécution (PostgreSQL)
 
 ### 6. Top 10 pays émetteurs
 
@@ -140,6 +145,8 @@ GROUP BY "Périmètre spatial"
 ORDER BY SUM("Emissions CO2") DESC
 LIMIT 10;
 ```
+#### Preuves d’exécution (PostgreSQL)
+![Top Emitters](visuals/top_10_emitters_2024.png)
 
 ---
 
