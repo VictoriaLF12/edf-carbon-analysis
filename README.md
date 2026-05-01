@@ -107,6 +107,21 @@ ORDER BY "Année";
 
 ```
 
+## 📸 Preuves d’exécution (PostgreSQL)
+
+### Création de la table
+![Create Table](visuals/create_table.png)
+
+---
+
+### Import des données CSV
+![Import CSV](visuals/import_csv.png)
+
+---
+
+### Top pays émetteurs (2024)
+![Top Emitters](visuals/top_emitters_2024.png)
+
 ## 📈 Résultats clés
 
 - Les émissions sont concentrées sur quelques pays majeurs
