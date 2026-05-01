@@ -48,3 +48,53 @@ CREATE TABLE edf_co2 (
     "Méthode de consolidation" TEXT,
     "Consolidation method" TEXT
 );
+
+## 📊 Analyses réalisées
+
+### 🌍 Évolution des émissions mondiales
+Analyse de l’évolution des émissions de CO₂ du périmètre mondial sur la période 2019–2024.
+
+---
+
+### 🏭 Top pays émetteurs (2024)
+Identification des pays les plus émetteurs de CO₂ en 2024 (hors périmètre global).
+
+---
+
+### 🇫🇷 France vs Monde
+Comparaison des émissions de la France par rapport au total mondial afin d’analyser son poids relatif.
+
+---
+
+## 🧠 Requêtes SQL principales
+
+### 📈 Évolution des émissions mondiales
+
+```sql
+SELECT "Année",
+       SUM("Emissions CO2") AS total_emissions
+FROM edf_co2
+WHERE "Périmètre spatial" = 'Monde'
+GROUP BY "Année"
+ORDER BY "Année";
+
+### 🏭 Top pays émetteurs (2024)
+
+```sql
+SELECT "Périmètre spatial",
+       "Emissions CO2"
+FROM edf_co2
+WHERE "Année" = 2024
+AND "Périmètre spatial" != 'Monde'
+ORDER BY "Emissions CO2" DESC;
+
+### 🇫🇷 France vs Monde
+
+```sql
+SELECT "Année",
+       "Périmètre spatial",
+       "Emissions CO2"
+FROM edf_co2
+WHERE "Périmètre spatial" IN ('France', 'Monde')
+ORDER BY "Année";
+
