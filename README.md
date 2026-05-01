@@ -1,12 +1,12 @@
 # edf-carbon-analysis
 
-# 🌍 EDF Carbon Emissions Analysis (2019–2024)
+# EDF Carbon Emissions Analysis (2019–2024)
 
 Projet d’analyse des émissions de CO₂ du groupe EDF par pays et par année, basé sur des données Open Data.
 
 ---
 
-## 🎯 Objectif du projet
+## Objectif du projet
 
 Ce projet a pour objectif de :
 
@@ -17,7 +17,7 @@ Ce projet a pour objectif de :
 
 ---
 
-## 🧰 Technologies utilisées
+## Technologies utilisées
 
 | Outil | Utilisation |
 |------|------------|
@@ -28,11 +28,11 @@ Ce projet a pour objectif de :
 
 ---
 
-## 🗂️ Architecture du projet
+## Architecture du projet
 
 ---
 
-## 🗄️ Base de données
+## Base de données
 
 Les données ont été importées dans une base PostgreSQL avec la structure suivante :
 
@@ -49,7 +49,9 @@ CREATE TABLE edf_co2 (
     "Consolidation method" TEXT
 );
 
-## 📊 Analyses réalisées
+---
+
+## Analyses réalisées
 
 ### 🌍 Évolution des émissions mondiales
 Analyse de l’évolution des émissions de CO₂ du périmètre mondial sur la période 2019–2024.
