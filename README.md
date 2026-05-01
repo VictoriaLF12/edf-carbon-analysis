@@ -81,10 +81,7 @@ ORDER BY "Année";
 
 On observe une réduction progressive et continue des émissions de CO₂ sur l’ensemble de la période.
 
-Cette évolution peut s’expliquer par :
-
-des politiques de réduction des émissions
-le renforcement des obligations de reporting carbone
+Cette évolution peut s’expliquer par des politiques de réduction des émissions et le renforcement des obligations de reporting carbone.
 
 #### Conclusion
 
