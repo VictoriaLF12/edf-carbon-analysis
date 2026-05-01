@@ -77,6 +77,19 @@ ORDER BY "Année";
 #### Preuves d’exécution (PostgreSQL)
 ![Top Emitters](visuals/evolution_des_emissions_mondiales.png)
 
+#### Interprétation des résultats
+
+On observe une réduction progressive et continue des émissions de CO₂ sur l’ensemble de la période.
+
+Cette évolution peut s’expliquer par :
+
+des politiques de réduction des émissions
+le renforcement des obligations de reporting carbone
+
+#### Conclusion
+
+Sur la période 2019–2024, le périmètre mondial analysé montre une tendance claire à la baisse des émissions de CO₂, suggérant une amélioration progressive de la performance environnementale.
+
 ---
 
 ### 2. Top pays émetteurs (2024)
