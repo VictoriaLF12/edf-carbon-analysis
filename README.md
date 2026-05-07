@@ -144,7 +144,7 @@ FROM emissions
 ORDER BY "Année";
 ```
 #### Preuves d’exécution (PostgreSQL)
-![Top Emitters](
+![Top Emitters](visuals/france_vs_monde.png)
 
 #### Interprétation des résultats
 
