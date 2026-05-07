@@ -125,15 +125,37 @@ Comparaison des émissions de la France par rapport au total mondial afin d’an
 
 #### Requêtes SQL principales
 ```sql
-SELECT "Année",
-       "Périmètre spatial",
-       "Emissions CO2"
-FROM edf_co2
-WHERE "Périmètre spatial" IN ('France', 'Monde')
-ORDER BY "Année"; 
+WITH emissions AS (
+    SELECT 
+        "Année",
+        MAX(CASE WHEN "Périmètre spatial" = 'France' 
+            THEN "Emissions CO2" END) AS france,
+        MAX(CASE WHEN "Périmètre spatial" = 'Monde' 
+            THEN "Emissions CO2" END) AS monde
+    FROM edf_co2
+    GROUP BY "Année")
+
+SELECT 
+    "Année",
+    ROUND(france::numeric,2) AS emissions_france,
+    ROUND(monde::numeric,2) AS emissions_monde,
+    ROUND((france / monde * 100)::numeric,2) AS poids_france_pct
+FROM emissions
+ORDER BY "Année";
 ```
 #### Preuves d’exécution (PostgreSQL)
 ![Top Emitters](
+
+#### Interprétation des résultats
+
+L’analyse comparative entre les émissions françaises et les émissions mondiales du groupe EDF met en évidence une diminution progressive des émissions de CO₂ sur l’ensemble de la période 2019–2024.
+
+Les émissions mondiales du groupe passent d’environ 32 249 en 2019 à 16 096 en 2024, traduisant une réduction significative de l’empreinte carbone globale d’EDF. La France suit une tendance similaire avec une baisse des émissions passant de 14 094 à 7 294 sur la même période.
+Malgré cette diminution, la France conserve un poids important dans les émissions totales du groupe. En moyenne, elle représente entre 40 % et 45 % des émissions mondiales d’EDF sur la période étudiée.
+
+Cette concentration peut s’expliquer par l’importance historique du marché français pour EDF, la taille des infrastructures énergétiques nationales et la centralisation d’une partie importante des activités du groupe en France.
+
+Les résultats suggèrent également qu’EDF a engagé une trajectoire globale de réduction carbone entre 2019 et 2024, potentiellement liée aux politiques de transition énergétique, à l’évolution du mix énergétique, à la fermeture progressive de certaines activités fortement émettrices ou à l’amélioration des performances environnementales.
 
 ### 4. Émissions moyennes par pays
 
