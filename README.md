@@ -106,6 +106,28 @@ ORDER BY "Emissions CO2" DESC;
 #### Preuves d’exécution (PostgreSQL)
 ![Top Emitters](visuals/top_emitters_2024.png)
 
+#### Interprétation des résultats
+
+L’analyse des émissions de CO₂ du groupe EDF en 2024 met en évidence une forte concentration des émissions sur quelques pays clés.
+
+La France apparaît comme le principal contributeur avec plus de 7 293 unités d’émissions, suivie par l’Italie et la Chine. Cette répartition reflète l’importance historique des activités du groupe EDF en Europe ainsi que sa présence internationale sur plusieurs marchés énergétiques.
+
+Les émissions élevées observées en Italie et en Chine peuvent s’expliquer par :
+
+une présence industrielle importante,
+des infrastructures énergétiques plus carbonées,
+ou des mix énergétiques nationaux davantage dépendants des énergies fossiles.
+
+À l’inverse, certains pays comme le Royaume-Uni, le Canada ou l’Inde présentent des niveaux d’émissions très faibles dans le périmètre EDF, ce qui peut traduire :
+
+une présence plus limitée du groupe,
+des activités moins intensives en carbone,
+ou un portefeuille énergétique davantage orienté vers des énergies bas carbone.
+
+#### Conclusion
+
+Globalement, les résultats montrent que les émissions carbone du groupe EDF ne sont pas réparties uniformément entre les différents pays d’implantation. Quelques zones géographiques concentrent une part majeure des émissions totales du groupe.
+
 ### 3. France vs Monde
 Comparaison des émissions de la France par rapport au total mondial afin d’analyser son poids relatif.
 
