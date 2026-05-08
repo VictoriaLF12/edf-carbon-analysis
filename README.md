@@ -379,7 +379,7 @@ ORDER BY "Année";
 ```
 
 #### Preuves d’exécution (PostgreSQL)
-![Annual CO2 Emissions Variations](visuals/Variations_annuelles_des_emissions.png)
+![Annual CO2 Emissions Variations](visuals/Variations_annuelles_des_émissions.png)
 
 #### Interprétation des résultats
 
