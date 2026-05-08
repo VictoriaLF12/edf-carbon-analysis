@@ -61,6 +61,136 @@ CREATE TABLE edf_co2 (
 
 ## 4. Nettoyage des données
 
+### 4.1. Vérification des valeurs NULL
+
+#### Objectif : Détecter les données manquantes. 
+Cette vérification permet d’identifier les lignes incomplètes pouvant fausser les analyses statistiques et les agrégations SQL.
+
+#### Requête SQL
+```sql
+SELECT *
+FROM edf_co2
+WHERE "Emissions CO2" IS NULL
+   OR "Année" IS NULL
+   OR "Périmètre spatial" IS NULL;
+```
+
+### 4.2. Vérification des doublons
+
+#### Objectif : Détecter des lignes importées plusieurs fois.
+Cette analyse permet d’identifier d’éventuels doublons dans les données importées afin d’éviter une surestimation des émissions.
+
+#### Requête SQL
+```sql
+SELECT "Année",
+       "Périmètre spatial",
+       COUNT(*)
+FROM edf_co2
+GROUP BY "Année", "Périmètre spatial"
+HAVING COUNT(*) > 1;
+```
+
+### 4.3. Vérification des valeurs négatives
+
+#### Objectif : Détecter des valeurs incohérentes.
+Les émissions carbone étant des valeurs positives, cette vérification permet d’identifier d’éventuelles erreurs de saisie ou anomalies dans les données.
+
+#### Requête SQL
+```sql
+SELECT *
+FROM edf_co2
+WHERE "Emissions CO2" < 0;
+```
+
+### 4.4. Vérification des années disponibles
+
+#### Objectif : Contrôler la période étudiée.
+Cette vérification confirme que les données couvrent correctement la période d’étude 2019–2024.
+
+#### Requête SQL
+
+```sql
+SELECT DISTINCT "Année"
+FROM edf_co2
+ORDER BY "Année";
+```
+
+
+### 4.5. Vérification des unités
+
+#### Objectif : S’assurer que toutes les émissions utilisent la même unité.
+Cette étape permet de vérifier l’homogénéité des unités de mesure afin d’assurer la cohérence des comparaisons entre pays et années.
+
+##### Requête SQL
+
+```sql
+SELECT DISTINCT "Unité"
+FROM edf_co2;
+```
+
+### 4.6. Vérification des valeurs extrêmes
+
+#### Objectif : Identifier des émissions anormalement élevées.
+Cette analyse permet de repérer les périmètres géographiques les plus fortement émetteurs ainsi que d’éventuelles anomalies statistiques.
+
+#### Requête SQL
+```sql
+SELECT *
+FROM edf_co2
+ORDER BY "Emissions CO2" DESC
+LIMIT 10;
+```
+
+### 4.7. Vérification des périmètres spatiaux
+
+#### Objectif : Identifier les incohérences de nommage.
+Les différentes valeurs du champ "Périmètre spatial" ont été contrôlées afin d’identifier d’éventuelles incohérences de nommage.
+
+#### Requête SQL
+```sql
+SELECT DISTINCT "Périmètre spatial"
+FROM edf_co2
+ORDER BY "Périmètre spatial";
+```
+
+#### Incohérences détectées
+
+Une anomalie de nommage a été identifiée concernant la Chine :
+
+République populaire de Chine
+République Populaire de Chine
+
+Ces deux valeurs représentaient le même pays mais étaient interprétées comme deux catégories différentes par PostgreSQL.
+
+Cela peut entraîner des doublons dans les analyses, des moyennes incorrectes et des erreurs dans les classements des pays émetteurs.
+
+#### Correction appliquée
+
+Une opération de normalisation des données a été réalisée afin d’unifier les libellés.
+
+```sql
+Requête SQL
+UPDATE edf_co2
+SET "Périmètre spatial" = 'République populaire de Chine'
+WHERE "Périmètre spatial" = 'République Populaire de Chine';
+```
+
+#### Vérification après correction
+
+Une nouvelle vérification des valeurs distinctes a été effectuée afin de confirmer la cohérence des données.
+
+```sql
+Requête SQL
+SELECT DISTINCT "Périmètre spatial"
+FROM edf_co2
+ORDER BY "Périmètre spatial";
+```
+
+#### Conclusion
+
+Cette étape de nettoyage a permis d’améliorer la qualité et la fiabilité des analyses réalisées dans le projet.
+Elle illustre également l’importance de la préparation des données dans une démarche de data analyse appliquée aux données ESG et environnementales.
+
 ---
 
 ## 5. Analyses réalisées
