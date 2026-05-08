@@ -77,7 +77,7 @@ WHERE "Emissions CO2" IS NULL
 
 #### Résultat
 
-![Create Table](null-values-check.png)
+![Create Table](null_values_check.png)
 
 Aucune valeur NULL n’a été détectée dans les colonnes analysées.
 
@@ -102,7 +102,7 @@ HAVING COUNT(*) > 1;
 
 #### Résultat
 
-![Create Table](duplicate-check.png)
+![Create Table](duplicate_check.png)
 
 Aucun doublon n’a été identifié dans les données.
 
@@ -124,7 +124,7 @@ WHERE "Emissions CO2" < 0;
 
 #### Résultat
 
-![Create Table](negative-values-check.png)
+![Create Table](negative_values_check.png)
 
 Aucune valeur négative n’a été détectée.
 
@@ -147,7 +147,7 @@ ORDER BY "Année";
 
 #### Résultat
 
-![Create Table](years-check.png)
+![Create Table](years_check.png)
 
 Les données couvrent bien l’ensemble de la période 2019–2024.
 
@@ -168,7 +168,7 @@ FROM edf_co2;
 ```
 #### Résultat
 
-![Create Table](units-check.png)
+![Create Table](units_check.png)
 
 Toutes les données sont exprimées en ktonnes.
 
@@ -196,7 +196,7 @@ Les émissions mondiales diminuent progressivement entre 2019 et 2024.
 
 #### Interprétation
 
-![Create Table](extreme-values-check.png)
+![Create Table](extreme_values_check.png)
 
 Les valeurs observées restent cohérentes avec le périmètre étudié et mettent en évidence le poids du périmètre mondial dans les émissions du groupe EDF, ainsi qu’une tendance globale à la réduction des émissions carbone sur la période analysée.
 
