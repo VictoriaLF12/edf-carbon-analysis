@@ -86,6 +86,7 @@ CREATE TABLE edf_co2 (
 Cette vérification permet d’identifier les lignes incomplètes pouvant fausser les analyses statistiques et les agrégations SQL.
 
 #### Requête SQL
+Les données contiennent-elles des valeurs manquantes susceptibles de fausser les analyses ?
 ```sql
 SELECT *
 FROM edf_co2
@@ -110,6 +111,7 @@ Les données importées sont complètes et exploitables pour les analyses statis
 Cette analyse permet d’identifier d’éventuels doublons dans les données importées afin d’éviter une surestimation des émissions.
 
 #### Requête SQL
+Certaines lignes ont-elles été importées plusieurs fois dans la base de données ?
 ```sql
 SELECT "Année",
        "Périmètre spatial",
@@ -135,6 +137,7 @@ Chaque combinaison année/périmètre spatial apparaît une seule fois dans la b
 Les émissions carbone étant des valeurs positives, cette vérification permet d’identifier d’éventuelles erreurs de saisie ou anomalies dans les données.
 
 #### Requête SQL
+Existe-t-il des valeurs d’émissions incohérentes ou négatives dans les données ?
 ```sql
 SELECT *
 FROM edf_co2
@@ -157,7 +160,7 @@ Les données d’émissions carbone présentent des valeurs cohérentes et compa
 Cette vérification confirme que les données couvrent correctement la période d’étude 2019–2024.
 
 #### Requête SQL
-
+Les données couvrent-elles correctement toute la période d’étude 2019–2024 ?
 ```sql
 SELECT DISTINCT "Année"
 FROM edf_co2
@@ -180,7 +183,7 @@ La continuité temporelle des données permet de réaliser des analyses d’évo
 Cette étape permet de vérifier l’homogénéité des unités de mesure afin d’assurer la cohérence des comparaisons entre pays et années.
 
 ##### Requête SQL
-
+Toutes les émissions sont-elles exprimées dans la même unité de mesure ?
 ```sql
 SELECT DISTINCT "Unité"
 FROM edf_co2;
@@ -201,6 +204,7 @@ L’uniformité des unités garantit la cohérence des comparaisons entre pays e
 Cette analyse permet de repérer les périmètres géographiques les plus fortement émetteurs ainsi que d’éventuelles anomalies statistiques.
 
 #### Requête SQL
+Quels sont les périmètres géographiques présentant les émissions les plus élevées ?
 ```sql
 SELECT *
 FROM edf_co2
@@ -225,6 +229,7 @@ Les valeurs observées restent cohérentes avec le périmètre étudié et mette
 Les différentes valeurs du champ "Périmètre spatial" ont été contrôlées afin d’identifier d’éventuelles incohérences de nommage.
 
 #### Requête SQL
+Existe-t-il des incohérences de nommage dans les pays ou périmètres spatiaux ?
 ```sql
 SELECT DISTINCT "Périmètre spatial"
 FROM edf_co2
@@ -277,6 +282,7 @@ Elle illustre également l’importance de la préparation des données dans une
 Analyse de l’évolution des émissions de CO₂ du périmètre mondial sur la période 2019–2024.
 
 #### Requêtes SQL principales
+Comment les émissions mondiales de CO₂ du groupe EDF évoluent-elles entre 2019 et 2024 ?
 ```sql
 SELECT "Année",
        SUM("Emissions CO2") AS total_emissions
@@ -304,6 +310,7 @@ Sur la période 2019–2024, le périmètre mondial analysé montre une tendance
 Identification des pays les plus émetteurs de CO₂ en 2024 (hors périmètre global).
 
 ### Requêtes SQL principales
+Quels sont les pays les plus émetteurs de CO₂ en 2024 au sein du groupe EDF ?
 ```sql
 SELECT "Périmètre spatial",
        "Emissions CO2"
@@ -335,6 +342,7 @@ Globalement, les résultats montrent que les émissions carbone du groupe EDF ne
 Comparaison des émissions de la France par rapport au total mondial afin d’analyser son poids relatif.
 
 #### Requêtes SQL principales
+Quelle part des émissions mondiales du groupe EDF est représentée par la France ?
 ```sql
 WITH emissions AS (
     SELECT 
@@ -371,6 +379,7 @@ Les résultats suggèrent également qu’EDF a engagé une trajectoire globale 
 ### 5.4. Émissions moyennes par pays
 
 #### Requêtes SQL principales
+Quels pays présentent les émissions moyennes les plus élevées sur la période étudiée ?
 ```sql
 SELECT "Périmètre spatial", AVG("Emissions CO2") 
 FROM edf_co2
@@ -384,6 +393,7 @@ ORDER BY AVG("Emissions CO2") DESC;
 ### 5.5. Variations annuelles des émissions
 
 #### Requêtes SQL principales
+Quelles sont les variations annuelles des émissions de CO₂ du groupe EDF ?
 ```sql
 SELECT 
     "Année",
@@ -413,6 +423,7 @@ Sur la période étudiée, EDF présente une trajectoire de réduction carbone n
 ### 5.6. Top 10 des pays les plus émetteurs sur la période 2019–2024 (émissions cumulées)
 
 #### Requêtes SQL principales
+Quels pays concentrent le plus d’émissions cumulées sur l’ensemble de la période 2019–2024 ?
 ```sql
 SELECT "Périmètre spatial", SUM("Emissions CO2")
 FROM edf_co2
