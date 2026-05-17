@@ -1,4 +1,4 @@
-# edf-carbon-analysis
+# EDF-Carbon-Analysis
 
 # EDF Carbon Emissions Analysis (2019–2024)
 
